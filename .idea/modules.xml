@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/thetrappedknightsimulator.iml" filepath="$PROJECT_DIR$/.idea/modules/thetrappedknightsimulator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TheTrappedKnightSimulator.iml" filepath="$PROJECT_DIR$/.idea/modules/TheTrappedKnightSimulator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TheTrappedKnightSimulator-build.iml" filepath="$PROJECT_DIR$/.idea/modules/TheTrappedKnightSimulator-build.iml" />
     </modules>
   </component>
 </project>
