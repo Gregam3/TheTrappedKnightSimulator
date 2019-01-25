@@ -1,3 +1,5 @@
+import scala.concurrent.JavaConversions
+
 /**
   * This code was taken from here https://rosettacode.org/wiki/Ulam_spiral_(for_primes)#Scala
   * and edited for simplicity and to show all numbers and not just primes.
@@ -9,14 +11,14 @@ object Main extends App {
   private object Direction extends Enumeration { val RIGHT, UP, LEFT, DOWN = Value }
 
   private def generate(n: Int) {
-    val grid = new Array[Array[String]](n).map {_ => new Array[String](n) }
+    val grid = new Array[Array[Integer]](n).map {_ => new Array[Integer](n) }
 
     import Direction._
     var dir = RIGHT
     var y = n / 2
     var x = if (n % 2 == 0) y - 1 else y // shift left for even n'grid
     for (j <- 1 to n * n) {
-      grid(y)(x) = "%4d".format(j)
+      grid(y)(x) = j
 
       dir match {
         case RIGHT => if (x <= n - 1 && grid(y - 1)(x) == null && j > 1) dir = UP
@@ -32,6 +34,11 @@ object Main extends App {
         case DOWN => y += 1
       }
     }
-    println(grid.map(_.mkString(",")).reduceLeft(_ + "\n" + _) + "\n")
+
+    println(grid.map(_.map(format(_)).mkString(",")).mkString("\n"))
+  }
+
+  def format(n:Int) = {
+    "%6d".format(n.toString.toInt)
   }
 }
