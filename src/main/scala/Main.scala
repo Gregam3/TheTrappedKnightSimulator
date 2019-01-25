@@ -1,3 +1,7 @@
+/**
+  * This code was taken from here https://rosettacode.org/wiki/Ulam_spiral_(for_primes)#Scala
+  * and edited for simplicity and to show all numbers and not just primes.
+  */
 
 object Main extends App {
   generate(55)
