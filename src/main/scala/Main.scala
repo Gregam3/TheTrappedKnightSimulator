@@ -1,22 +1,27 @@
+import scala.collection.mutable
 import scala.concurrent.JavaConversions
 
-/**
-  * This code was taken from here https://rosettacode.org/wiki/Ulam_spiral_(for_primes)#Scala
-  * and edited for simplicity and to show all numbers and not just primes.
-  */
+
 
 object Main extends App {
   generate(55)
 
-  private object Direction extends Enumeration { val RIGHT, UP, LEFT, DOWN = Value }
+  private object Direction extends Enumeration { val RIGHT, UP, LEFT, DOWN, CENTER = Value }
 
+  
+//    This code was taken from here https://rosettacode.org/wiki/Ulam_spiral_(for_primes)#Scala
+//    and edited for simplicity and to show all numbers and not just primes.
+    
+  
   private def generate(n: Int) {
-    val grid = new Array[Array[Integer]](n).map {_ => new Array[Integer](n) }
+    //using Integer over Int to to be able to check nulls
+    val grid = new Array[Array[Integer]](n).map(_ => new Array[Integer](n))
 
     import Direction._
     var dir = RIGHT
     var y = n / 2
-    var x = if (n % 2 == 0) y - 1 else y // shift left for even n'grid
+    var x = y
+
     for (j <- 1 to n * n) {
       grid(y)(x) = j
 
@@ -36,6 +41,8 @@ object Main extends App {
     }
 
     println(grid.map(_.map(format(_)).mkString(",")).mkString("\n"))
+
+    Board(grid)
   }
 
   def format(n:Int) = {
