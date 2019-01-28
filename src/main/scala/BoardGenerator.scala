@@ -5,27 +5,21 @@ object BoardGenerator {
 }
 
 class BoardGenerator(grid: Array[Array[Integer]]) {
-  private[this] val one = Set(1, -1)
-  private[this] val two = Set(2,-2)
-
   def gen = {
     var board = Map[Int, mutable.Set[Integer]]()
 
     for (y <- grid.indices) {
       board ++= grid(y).indices.map(x =>
-        grid(y)(x).toInt -> mutable.Set(
-          safeGrid(y + 2, x + 1),
-          safeGrid(y + 2, x - 1),
-          safeGrid(y + 1, x + 2),
-          safeGrid(y + 1, x - 2),
-          safeGrid(y - 1, x + 2),
-          safeGrid(y - 1, x - 2),
-          safeGrid(y - 2, x + 1),
-          safeGrid(y - 2, x - 1)
-        ).filter(_ != null)).toMap
+        grid(y)(x).toInt ->
+          (movementPermutationsAsSet(y, x, false) ++ movementPermutationsAsSet(y, x, true))
+      ).filter(_ != null)
     }
 
     board
+  }
+
+  private def movementPermutationsAsSet(y: Integer, x: Integer, invert: Boolean) = {
+    mutable.Set(-2, 2).flatMap(a => Set(-1, 1).map(b => if (invert) safeGrid(y + b, x + a) else safeGrid(y + a, x + b)))
   }
 
   private def safeGrid(y: Int, x: Int) = {
