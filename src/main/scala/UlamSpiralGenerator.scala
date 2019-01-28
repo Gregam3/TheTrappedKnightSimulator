@@ -4,7 +4,7 @@ object UlamSpiralGenerator {
   }
 
   //    Code found in gen() was initially taken from here https://rosettacode.org/wiki/Ulam_spiral_(for_primes)#Scala
-  //    and edited for to suit the purposes of this task
+  //    and edited for to suit the purposes of this task. All other code is completely original.
 
   def gen(n: Int) = {
     assert(n % 11 == 0, "grid size must be divisible by 11")
