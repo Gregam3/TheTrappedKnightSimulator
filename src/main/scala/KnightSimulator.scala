@@ -1,20 +1,16 @@
 import scala.collection.mutable
 
 object KnightSimulator {
-  def sim(board: Map[Int, mutable.Set[Int]]) = {
-    var canMove = true
+  def sim(board: Map[Int, mutable.Set[Integer]]) = {
     var pos = 1
     var path = mutable.ArrayBuffer[Int]()
 
-    while(canMove) {
+    while(pos != 2084) {
       board(pos).foreach{board(_) -= pos}
-      if(board(pos).isEmpty) canMove = false
-      else {
-        pos = board(pos).min
-        path += pos
-      }
+      path += pos
+      if(board(pos).nonEmpty) pos = board(pos).min
     }
 
-    println(path)
+    path += 2084
   }
 }
