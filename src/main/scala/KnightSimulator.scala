@@ -5,10 +5,11 @@ object KnightSimulator {
     var pos = 1
     var path = mutable.ArrayBuffer[Int]()
 
+    //Sequence identical to https://oeis.org/A316667 hence condition has been changed to 2084 to reduce verbosity
     while(pos != 2084) {
       board(pos).foreach{board(_) -= pos}
       path += pos
-      if(board(pos).nonEmpty) pos = board(pos).min
+      pos = board(pos).min
     }
 
     path += 2084
