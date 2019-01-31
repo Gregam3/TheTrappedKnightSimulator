@@ -1,5 +1,4 @@
 object Main extends App {
-  var board = BoardGenerator(UlamSpiralGenerator.gen(99))
-  var knightSequence = KnightSimulator.sim(board)
+  val board = BoardGenerator(UlamSpiralGenerator.gen(99))
   println("Sequence = " + KnightSimulator.sim(board).mkString("->"))
 }
